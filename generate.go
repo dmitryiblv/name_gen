@@ -19,6 +19,9 @@ func Generate(country Country) (string, error) {
     if !ok {
         return "", fmt.Errorf("bad input: country: %v", country)
     }
+    if len(fio.Names.List) <= 0 || len(fio.Surnames.List) <= 0 || len(fio.Midnames.List) <= 0 {
+        return "", fmt.Errorf("bad input: empty list")
+    }
 
     rand.Seed(time.Now().UTC().UnixNano())
     name    := fio.Names.List[ rand.Intn(len(fio.Names.List)) ]
